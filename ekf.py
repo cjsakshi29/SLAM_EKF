@@ -5,29 +5,22 @@ from config import Q, R
 
 class EKFSLAM:
     def __init__(self):
-        # EKF state: [x, y, theta]
-        self.mu = np.array([1.0, 1.0, 0.5])   # wrong initial pose (intentional)
+        self.mu = np.array([1.0, 1.0, 0.5])
         self.Sigma = np.eye(3)
 
-        # Known landmarks (for EKF update)
         self.landmark_map = {}
-
-        # ✅ EKF estimated path (THIS FIXES YOUR ERROR)
         self.path = []
 
     def predict(self, u, dt):
         v, w = u
         x, y, th = self.mu[:3]
 
-        # Motion model
         self.mu[0] += v * math.cos(th) * dt
         self.mu[1] += v * math.sin(th) * dt
         self.mu[2] += w * dt
 
-        # Covariance propagation
         self.Sigma[:3, :3] += Q
 
-        # ✅ Store EKF path
         self.path.append((self.mu[0], self.mu[1]))
 
     def update(self, lm_id, z):
