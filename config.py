@@ -12,9 +12,9 @@ GOALS = [(2,2), (8,4), (5,7)]
 GOAL_NAMES = ["G1", "G2", "G3"]
 
 LANDMARKS = {
-    0: (4,3),   # Pillar
-    1: (8,5),   # Table corner
-    2: (2,7)    # Cabinet edge
+    0: (4,3),
+    1: (8,5),
+    2: (2,7)
 }
 
 FOV = math.radians(90)
