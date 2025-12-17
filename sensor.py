@@ -24,9 +24,8 @@ def obstacle_ahead(robot_state, landmarks, safe_dist):
     """
     x, y, theta = robot_state
 
-    # Physical sizes (meters)
-    OBSTACLE_RADIUS = 0.15    # pillar approx radius
-    ROBOT_RADIUS = 0.20      # robot footprint radius
+    OBSTACLE_RADIUS = 0.15
+    ROBOT_RADIUS = 0.20
 
     for lx, ly in landmarks.values():
         dx = lx - x
@@ -35,10 +34,6 @@ def obstacle_ahead(robot_state, landmarks, safe_dist):
         r = math.hypot(dx, dy)
         bearing = wrap_angle(math.atan2(dy, dx) - theta)
 
-        # ✅ FINAL FIX:
-        # Obstacle is considered blocking if:
-        # 1. Inside camera FOV
-        # 2. Distance < safe + obstacle + robot radius
         if abs(bearing) < FOV / 2 and r < (safe_dist + OBSTACLE_RADIUS + ROBOT_RADIUS):
             return True
 
