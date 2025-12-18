@@ -121,6 +121,17 @@ while True:
         world_to_screen(4, 3, ox, oy, SCALE, ROOM_H),
         int(0.15 * SCALE)
     )
+    
+    pygame.draw.circle(
+        screen, (180, 180, 180),
+        world_to_screen(0, 0, ox, oy, SCALE, ROOM_H),
+        6
+    )
+    pygame.draw.circle(
+        screen, (180, 180, 180),
+        world_to_screen(10, 0, ox, oy, SCALE, ROOM_H),
+        6
+    )
 
     tx, ty = world_to_screen(8, 5, ox, oy, SCALE, ROOM_H)
     pygame.draw.line(screen, (180, 180, 180), (tx, ty), (tx + 30, ty), 3)
